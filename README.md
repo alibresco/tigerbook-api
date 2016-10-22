@@ -61,7 +61,7 @@ secret "secret": </p>
     from base64 import b64encode
     from datetime import datetime
 
-    url = 'http://localhost:8000/api/v1/undergraduates'
+    url = 'https://tigerbook.herokuapp.com/api/v1/undergraduates'
     created = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
     nonce = ''.join([random.choice('0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+/=') for i in range(32)])
     username = 'jdoe'

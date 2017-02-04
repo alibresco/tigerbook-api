@@ -1,9 +1,10 @@
 #tigerbook API doc
 
 <ul>
-    <li>GET /api/v1/getkey</li>
+    <li>GET /api/v1/getkey/{agent}</li>
     <ul>
         <li>CAS protected -- should be accessed in a browser</li>
+        <li>Agent is an optional argument to be used if you would like to get the key for a specific agent (explanation below). This is typically not necessary unless you have the specific use case defined in the section titled "Application Agents".</li>
         <li>Returns a 32-character key that can be used to access the rest of the API</li>
         <li>Ex: api/v1/getkey --> '586c55266c456c676d54366c3137322d'</li>
     </ul>
@@ -35,6 +36,11 @@
        <li>Returns a list of all netids of roommates of {netid}</li>
    </ul>
 </ul>
+
+###Application Agents
+<p>When you create an outward-facing application where the user needs to access this API on the client side, they should be using their own API credentials instead of yours so that your key is not leaked to the public. This is potentially problematic, however, as if someone uses two different client-side applications that use this API, the second app would overwrite the first's key. As a result, we have user agents available to use to earmark an API key for a specific application so that it persists until the app creator refreshes it. Each app should create one agent name that it uses for all users, an alphanumeric key both unique to that specific app and visually identifiable as belonging to that app. Then, request all the client side API keys using that agent. When you go to make an actual API request, you should send, in the Username field, username+agent instead of sending just username.</p>
+<p>For example, imagine that you are working on an app entitled "testapp1". Given this uniqueness, you could name your agent as such. Therefore, all client-side requests for API keys should be make in the form /api/v1/getkey/testapp1. Then, if you were to make an API request from the user "jdoe", you should send the Username field as "jdoe+testapp1".</p>
+<p>For the majority of possible uses of this API, agents are unnecessary. For the case in which it is necessary, however, proper use is <i>critically</i> important. If you have any questions, please ask.</p>
 
 ###WSSE Explanation and Guide
 <p>Each request to an API endpoint must include an HTTP header X-WSSE which
@@ -72,4 +78,4 @@ secret "secret": </p>
         'X-WSSE': 'UsernameToken Username="%s", PasswordDigest="%s", Nonce="%s", Created="%s"' % (username, generated_digest, nonce, created)
     }
 
-####Email alibresco@princeton.edu to request API key access
+####Email alibresco@princeton.edu with any questions or concerns

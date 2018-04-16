@@ -75,7 +75,7 @@ secret "secret": </p>
     generated_digest = b64encode(hashlib.sha256(nonce + created + password).digest())
     headers = {
         'Authorization': 'WSSE profile="UsernameToken"',
-        'X-WSSE': 'UsernameToken Username="%s", PasswordDigest="%s", Nonce="%s", Created="%s"' % (username, generated_digest, nonce, created)
+        'X-WSSE': 'UsernameToken Username="%s", PasswordDigest="%s", Nonce="%s", Created="%s"' % (username, generated_digest, b64encode(nonce), created)
     }
 
 <h4>Email alibresco@princeton.edu with any questions or concerns</h4>

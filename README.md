@@ -78,4 +78,4 @@ secret "secret": </p>
         'X-WSSE': 'UsernameToken Username="%s", PasswordDigest="%s", Nonce="%s", Created="%s"' % (username, generated_digest, b64encode(nonce), created)
     }
 
-<h4>Email alibresco@princeton.edu with any questions or concerns</h4>
+<h4>Email nbs@princeton.edu with any questions or concerns</h4>

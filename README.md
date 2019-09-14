@@ -24,13 +24,13 @@
         </li>
         <li>* Must have privileged api access</li>
    </ul>
-   <li>GET /api/v1/roommates</li>
+   <li>GET /api/v1/roommates (DEPRECATED)</li>
    <ul>
        <li>WSSE protected</li>
        <li>GET arguments: [dorm_building, dorm_number]</li>
        <li>Returns a list of all netids living in that room</li>
    </ul>
-   <li>GET /api/v1/roommates/{netid}</li>
+   <li>GET /api/v1/roommates/{netid} (DEPRECATED)</li>
    <ul>
        <li>WSSE protected</li>
        <li>Returns a list of all netids of roommates of {netid}</li>
